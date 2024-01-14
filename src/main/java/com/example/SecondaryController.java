@@ -61,8 +61,8 @@ public class SecondaryController {
     }
 
     @FXML
-    void quitClick(ActionEvent event) {
-
+    void quitClick(ActionEvent event) throws Exception {
+        App.setRoot("primary");
     }
 
     @FXML
