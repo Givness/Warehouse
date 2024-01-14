@@ -7,14 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Scanner;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Stage stage;
@@ -28,7 +24,7 @@ public class App extends Application {
     public static int titleHeight;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
         App.stage = stage;
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
@@ -37,7 +33,7 @@ public class App extends Application {
         titleHeight = (int)(Stage.getWindows().get(0).getHeight() - scene.getHeight());
     }
 
-    static void setRoot(String fxml) throws IOException {
+    static void setRoot(String fxml) throws Exception {
         Parent p = loadFXML(fxml);
         scene.setRoot(p);
         stage.setWidth(p.prefWidth(-1));
@@ -50,7 +46,7 @@ public class App extends Application {
         stage.setHeight(height);
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    private static Parent loadFXML(String fxml) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
