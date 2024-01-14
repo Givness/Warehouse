@@ -1,3 +1,3 @@
 jdbc:mysql://localhost:3306/warehouse
 root
-WoF8C?iWd0*nah5j
+password
