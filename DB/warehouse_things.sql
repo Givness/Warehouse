@@ -27,7 +27,8 @@ CREATE TABLE `things` (
   `description` varchar(255) DEFAULT NULL,
   `status` varchar(45) NOT NULL,
   `owner` varchar(45) NOT NULL,
-  PRIMARY KEY (`name`)
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,7 +38,7 @@ CREATE TABLE `things` (
 
 LOCK TABLES `things` WRITE;
 /*!40000 ALTER TABLE `things` DISABLE KEYS */;
-INSERT INTO `things` VALUES ('Веник','Веник, которым подметают пол.','0','test1'),('Коробка','Я не знаю что лежит в этой коробке','0','test1'),('Швабра','Шваброй моют пол','2','test1');
+INSERT INTO `things` VALUES ('Веник','Веник, которым подметают пол.','0','test1'),('Коробка','Я не знаю что лежит в этой коробке','1','test1'),('Швабра','Шваброй моют пол','2','test1');
 /*!40000 ALTER TABLE `things` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-14 16:05:58
+-- Dump completed on 2024-01-14 18:40:56
