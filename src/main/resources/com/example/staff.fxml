@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.StaffController">
+   <children>
+      <TableView fx:id="table" layoutY="100.0" onMouseClicked="#tableClick" prefHeight="620.0" prefWidth="1030.0">
+        <columns>
+          <TableColumn fx:id="nameCol" prefWidth="257.0" text="Название" />
+            <TableColumn fx:id="descriptionCol" minWidth="0.0" prefWidth="257.0" text="Описание" />
+          <TableColumn fx:id="statusCol" prefWidth="257.0" text="Статус" />
+            <TableColumn fx:id="ownerCol" prefWidth="257.0" text="Владелец" />
+        </columns>
+      </TableView>
+      <AnchorPane prefHeight="100.0" prefWidth="1280.0" style="-fx-background-color: Gray;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Text fill="WHITE" layoutX="35.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Заявки">
+               <font>
+                  <Font name="Arial Bold" size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1030.0" prefHeight="720.0" prefWidth="250.0" style="-fx-background-color: SeaGreen;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Text fill="WHITE" layoutX="42.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="СКЛАД">
+               <font>
+                  <Font name="Arial Bold" size="48.0" />
+               </font>
+            </Text>
+            <Button layoutX="42.0" layoutY="633.0" mnemonicParsing="false" onAction="#quitClick" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: LightGray;" text="Выйти">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button layoutX="42.0" layoutY="550.0" mnemonicParsing="false" onAction="#confirmClick" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: LightGray;" text="Подтвердить">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

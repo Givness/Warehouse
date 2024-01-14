@@ -8,13 +8,15 @@ public class Thing {
     private SimpleStringProperty name;
     private SimpleStringProperty description;
     private SimpleIntegerProperty status;
+    private SimpleStringProperty owner;
 
-    Thing(String name, String description, int status){
+    Thing(String name, String description, int status, String owner){
         this.name = new SimpleStringProperty(name);
         this.description = new SimpleStringProperty(description);
         this.status = new SimpleIntegerProperty(status);
+        this.owner = new SimpleStringProperty(owner);
     }
-     
+    
     public SimpleStringProperty nameProperty() { return name;}
     public SimpleStringProperty descriptionProperty() { return description;}
 
@@ -26,6 +28,9 @@ public class Thing {
      
     public int getStatus(){ return status.get();}
     public void setStatus(int value){ status.set(value);}
+
+    public String getOwner(){ return owner.get();}
+    public void setOwner(String value){ owner.set(value);}   
 
     public String getStringStatus() { return intToStatusString(status.get()); }
 

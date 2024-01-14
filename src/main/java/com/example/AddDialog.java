@@ -56,6 +56,7 @@ public class AddDialog extends Dialog<Thing> {
     private void setPropertyBindings() {
         nameField.textProperty().bindBidirectional(thing.nameProperty());
 		descriptionField.textProperty().bindBidirectional(thing.descriptionProperty());
+		thing.setOwner(App.userLogin);
     }
 
     private void setResultConverter() {

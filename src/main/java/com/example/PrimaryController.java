@@ -48,19 +48,30 @@ public class PrimaryController {
         ps = App.DBConnection.prepareStatement("SELECT EXISTS(SELECT login FROM users WHERE login = '" + login + "')");
 		ps.execute();
 		ResultSet rs = ps.getResultSet();
-        while (rs.next()) {
-            if (!rs.getBoolean(1)) return false;
-        }
+        rs.next();
+        if (!rs.getBoolean(1)) return false;
 
         ps = App.DBConnection.prepareStatement("SELECT CASE WHEN password = '" + password + "' THEN true ELSE false END FROM users WHERE login = '" + login + "'");
 		ps.execute();
 		rs = ps.getResultSet();
-        while (rs.next()) {
-            if (rs.getBoolean(1)) {
-                App.userLogin = login;
-                App.setRoot("secondary");
-                return true;
+        rs.next();
+        if (rs.getBoolean(1)) {
+            App.userLogin = login;
+
+            ps = App.DBConnection.prepareStatement("SELECT type FROM users WHERE login = '" + login + "'");
+            ps.execute();
+            rs = ps.getResultSet();
+            rs.next();
+            switch (rs.getInt(1)) {
+                case 1:
+                    App.setRoot("staff");
+                    break;
+            
+                default:
+                    App.setRoot("secondary");
+                    break;
             }
+            return true;
         }
 
         return false;
