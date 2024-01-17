@@ -76,8 +76,8 @@ public class AddDialog extends Dialog<Thing> {
     public Pane createGridPane() {
 		VBox content = new VBox(10);
 
-		Label nameLabel = new Label("Name");
-		Label descriptionLabel = new Label("Description");
+		Label nameLabel = new Label("Имя");
+		Label descriptionLabel = new Label("Описание");
 		this.nameField = new TextField();
 		this.descriptionField = new TextField();
 		GridPane grid = new GridPane();

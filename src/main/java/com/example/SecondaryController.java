@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,11 +35,83 @@ public class SecondaryController {
     private TableColumn<Thing, String> statusCol;
 
     @FXML
+    private Button cancelButton;
+
+    @FXML
     void tableClick(MouseEvent event) {
-        if(event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
-            System.out.println("qq");
-            table.getSelectionModel().getSelectedItem();
+        if(event.getButton().equals(MouseButton.PRIMARY) & table.getSelectionModel().getSelectedItem() != null) {
+            switch (table.getSelectionModel().getSelectedItem().getStatus()) {
+                case 0:
+                    cancelButton.setText("Отменить");
+                    break;
+        
+                case 1:
+                    cancelButton.setText("Отменить");
+                    break;
+                
+                case 2:
+                    cancelButton.setText("Забрать");
+                    break;
+                    
+                case 3:
+                    cancelButton.setText("Отменить");
+                    break;
+
+                case 4:
+                    cancelButton.setText("Отменить");
+                    break;
+
+                case 5:
+                    cancelButton.setText("Удалить");
+                    break;
+
+                default:
+                    cancelButton.setText("Что?");
+                    break;
+            }
         }
+    }
+
+    @FXML
+    void cancelClick(ActionEvent event) throws Exception {
+        Thing thing = table.getSelectionModel().getSelectedItem();
+        if (thing == null) return;
+        PreparedStatement ps = null;
+        switch (thing.getStatus()) {
+            case 0:
+                ps = App.DBConnection.prepareStatement("DELETE FROM things WHERE name ='" + thing.getName() + "'");
+                App.writeLog(App.userLogin, "Cancel bring request for thing " + thing.getName());
+                break;
+        
+            case 1:
+                ps = App.DBConnection.prepareStatement("DELETE FROM things WHERE name ='" + thing.getName() + "'");
+                App.writeLog(App.userLogin, "Cancel deliver request for thing " + thing.getName());
+                break;
+
+            case 2:
+                ps = App.DBConnection.prepareStatement("UPDATE things SET status = 3 WHERE name ='" + thing.getName() + "'");
+                App.writeLog(App.userLogin, "Create take request for thing " + thing.getName());
+                break;
+
+            case 3:
+                ps = App.DBConnection.prepareStatement("UPDATE things SET status = 2 WHERE name ='" + thing.getName() + "'");
+                App.writeLog(App.userLogin, "Cancel take request for thing " + thing.getName());
+                break;
+
+            case 4:
+                ps = App.DBConnection.prepareStatement("UPDATE things SET status = 2 WHERE name ='" + thing.getName() + "'");
+                App.writeLog(App.userLogin, "Cancel take request for thing " + thing.getName());
+                break;
+
+            case 5:   
+                ps = App.DBConnection.prepareStatement("DELETE FROM things WHERE name ='" + thing.getName() + "'");
+                App.writeLog(App.userLogin, "Delete canceled thing " + thing.getName());
+                break;
+            default:
+                return;
+        }
+		ps.execute();
+        refreshTable();
     }
 
     @FXML
@@ -57,12 +130,14 @@ public class SecondaryController {
             ps.execute();
 
             refreshTable();
+            App.writeLog(App.userLogin, "Add request for thing " + thing.getName());
         }
     }
 
     @FXML
     void quitClick(ActionEvent event) throws Exception {
         App.setRoot("primary");
+        App.writeLog(App.userLogin, "Logged out");
     }
 
     @FXML

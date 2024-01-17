@@ -55,6 +55,14 @@
                   <DropShadow />
                </effect>
             </Button>
+            <Button fx:id="cancelButton" layoutX="42.0" layoutY="467.0" mnemonicParsing="false" onAction="#cancelClick" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: LightGray;" text="Отменить">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
    </children>

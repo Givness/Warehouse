@@ -7,8 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Date;
 import java.util.Scanner;
 
 public class App extends Application {
@@ -22,6 +24,8 @@ public class App extends Application {
     public static String userLogin;
 
     public static int titleHeight;
+
+    private static FileWriter writer;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -76,7 +80,29 @@ public class App extends Application {
             System.out.println("Connection to Store DB failed...");
             System.out.println(ex);
         }
+
+        File f = new File("logs");
+        if (!f.exists()) {
+            f.mkdir();
+        }
+
+        String logFile = "logs/log_";
+        int i = 0;
+        while ((new File(logFile + ++i + ".txt")).exists());
+        logFile += i + ".txt";
+        try {  
+            writer = new FileWriter(logFile, false);
+            writeLog("System", "Start loging");
+        }
+        catch(Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
         launch(args);
     }
 
+    public static void writeLog(String user, String message) throws Exception {
+        writer.append("[" + new Date() + "] " + user + ": " + message + ".\n");
+        writer.flush();
+    }
 }
