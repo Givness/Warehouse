@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class StaffController {
 
@@ -32,6 +33,9 @@ public class StaffController {
 
     @FXML
     private TableColumn<Thing, String> ownerCol;
+
+    @FXML
+    private Text username;
 
     @FXML
     void confirmClick(ActionEvent event) throws Exception {
@@ -107,6 +111,7 @@ public class StaffController {
         statusCol.setCellValueFactory(new PropertyValueFactory<Thing, String>("stringStatus"));
         ownerCol.setCellValueFactory(new PropertyValueFactory<Thing, String>("owner"));
         refreshTable();   
+        username.setText(App.userLogin);
     }
 
     void refreshTable() throws Exception {

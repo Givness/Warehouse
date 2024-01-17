@@ -23,7 +23,8 @@ public class App extends Application {
 
     public static String userLogin;
 
-    public static int titleHeight;
+    public static int deltaWidth;
+    public static int deltaHeight;
 
     private static FileWriter writer;
 
@@ -33,15 +34,16 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.show();        
-        titleHeight = (int)(Stage.getWindows().get(0).getHeight() - scene.getHeight());
+        stage.show();
+        deltaWidth = (int)(Stage.getWindows().get(0).getWidth() - scene.getWidth());
+        deltaHeight = (int)(Stage.getWindows().get(0).getHeight() - scene.getHeight());
     }
 
     static void setRoot(String fxml) throws Exception {
         Parent p = loadFXML(fxml);
         scene.setRoot(p);
-        stage.setWidth(p.prefWidth(-1));
-        stage.setHeight(p.prefHeight(-1) + titleHeight);
+        stage.setWidth(p.prefWidth(-1) + deltaWidth);
+        stage.setHeight(p.prefHeight(-1) + deltaHeight);
         Stage.getWindows().get(0).centerOnScreen();
     }
 

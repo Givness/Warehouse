@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 public class SecondaryController {
 
@@ -36,6 +37,9 @@ public class SecondaryController {
 
     @FXML
     private Button cancelButton;
+
+    @FXML
+    private Text username;
 
     @FXML
     void tableClick(MouseEvent event) {
@@ -145,7 +149,8 @@ public class SecondaryController {
         nameCol.setCellValueFactory(new PropertyValueFactory<Thing, String>("name"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<Thing, String>("description"));
         statusCol.setCellValueFactory(new PropertyValueFactory<Thing, String>("stringStatus"));
-        refreshTable();   
+        refreshTable();  
+        username.setText(App.userLogin);
     }
 
     void refreshTable() throws Exception {

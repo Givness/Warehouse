@@ -60,8 +60,6 @@ public class RegDialog extends Dialog<User> {
     private void setPropertyBindings() {
         nameField.textProperty().bindBidirectional(user.nameProperty());
 		passwordField.textProperty().bindBidirectional(user.passwordProperty());
-        if (clientRadio.isSelected()) user.setType(0);
-        else if (staffRadio.isSelected()) user.setType(1);
     }
 
     private void setResultConverter() {
@@ -69,6 +67,8 @@ public class RegDialog extends Dialog<User> {
 			@Override
 			public User call(ButtonType param) {
 				if (param == ButtonType.OK) {
+					if (clientRadio.isSelected()) user.setType(0);
+					else if (staffRadio.isSelected()) user.setType(1);
 					return user;
 				} else {
 					return null;

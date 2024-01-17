@@ -64,6 +64,11 @@
                   <DropShadow />
                </effect>
             </Button>
+            <Text fx:id="username" fill="WHITE" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" textAlignment="CENTER" wrappingWidth="250.0">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
